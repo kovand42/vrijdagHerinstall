@@ -1,0 +1,8 @@
+be.vdab.applicatie.repositories
+be.vdab.applicatie.services
+be.vdab.entities
+be.vdab.repositories
+be.vdab.services
+be.vdab.testsuites
+be.vdab.util
+be.vdab.valueobjects
