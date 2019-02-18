@@ -21,15 +21,24 @@ public class LandServiceTest {
 	@Before
 	public void before() {
 		when(landRepository.findOppervlakteAlleLanden()).thenReturn(20);
-		when(landRepository.read("B")).thenReturn(new Land("B", 5));
+		when(landRepository.read("B")).thenReturn(new Land("B", 4));
+		when(landRepository.read("NL")).thenReturn(new Land("NL", 5));
 		//landRepository = new LandRepositoryStub();
 		landService = new LandService(landRepository);
 
 	}
 	@Test
-	public void findVerhoudingOppervlakteLandTovOppervlakteAlleLanden() {
+	public void findVerhoudingOppervlakteLandTovOppervlakteAlleLandenNL() {
 
 		assertEquals(0, BigDecimal.valueOf(0.25).compareTo(
+				landService.findVerhoudingOppervlakteLandTovOppervlakteAlleLanden("NL")));
+		verify(landRepository).findOppervlakteAlleLanden();
+		verify(landRepository).read("NL");
+	}
+	@Test
+	public void findVerhoudingOppervlakteLandTovOppervlakteAlleLandenB() {
+
+		assertEquals(0, BigDecimal.valueOf(0.2).compareTo(
 				landService.findVerhoudingOppervlakteLandTovOppervlakteAlleLanden("B")));
 		verify(landRepository).findOppervlakteAlleLanden();
 		verify(landRepository).read("B");
